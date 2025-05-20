@@ -1,14 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import type { NextApiRequest, NextApiResponse } from 'next';
 import crypto from 'crypto';
 
-type Data = {
-    message: any;
-};
-
 export async function GET(
-    req: NextApiRequest,
-    res: NextApiResponse<Data>
+    req: Request,
 ) {
     try {
         const data = "Connected myroute";
@@ -16,7 +10,7 @@ export async function GET(
         const etag = crypto.createHash('md5').update(JSON.stringify(data)).digest('hex');
 
         // Compare client ETag
-        const clientETag = req.headers['if-none-match'];
+        const clientETag = req.headers.get('if-none-match');
 
         if (clientETag === `"${etag}"`) {
             // Data has not changed, send 304
