@@ -43,7 +43,10 @@ export async function GET(
         }
 
         const db = await connectToMongoDBS1();
-        const data = await db.collection(MyConfig.colNameAdmin ?? "").find({}).toArray();
+        const data = await db.collection(MyConfig.colNameAdmin ?? "").find(
+            {},
+            { projection: { password: 0 } }
+        ).toArray();
 
         return new Response(JSON.stringify({ data }), {
             status: 200,
