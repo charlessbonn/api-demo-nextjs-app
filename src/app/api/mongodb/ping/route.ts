@@ -1,7 +1,7 @@
 import { connectToMongoDBS1 } from "../../../../../mongodb";
 
 export async function GET(
-    req: Request,
+    // req: Request,
 ) {
     try {
         const db = await connectToMongoDBS1();
