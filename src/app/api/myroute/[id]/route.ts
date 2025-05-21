@@ -1,8 +1,16 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
+interface Params {
+    id: string;
+}
+
+interface Props {
+    params: Params;
+}
+
 export async function GET(
     req: Request,
-    { params }: { params: { id: string } }
+    { params }: Props
 ): Promise<Response> {
     console.log(req.method);
     const { id } = await params;
