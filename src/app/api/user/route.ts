@@ -62,7 +62,7 @@ export async function GET(
                 // Set cookie
                 cookies()).set('auth-token', '', {
                     httpOnly: true,
-                    secure: MyConfig.devMode, // false for localhost
+                    secure: !MyConfig.devMode, // false for localhost
                     sameSite: 'none',
                     maxAge: 0, // 1 day
                 });
@@ -70,7 +70,7 @@ export async function GET(
                 // Set cookie
                 cookies()).set('user-session', '', {
                     httpOnly: false,
-                    secure: MyConfig.devMode, // false for localhost
+                    secure: !MyConfig.devMode, // false for localhost
                     sameSite: 'none',
                     maxAge: 0, // 1 day
                 });
@@ -169,7 +169,7 @@ export async function POST(
                 // Set cookie
                 cookies()).set('auth-token', '', {
                     httpOnly: true,
-                    secure: MyConfig.devMode, // false for localhost
+                    secure: !MyConfig.devMode, // false for localhost
                     sameSite: 'none',
                     maxAge: 0, // 1 day
                 });
@@ -177,7 +177,7 @@ export async function POST(
                 // Set cookie
                 cookies()).set('user-session', '', {
                     httpOnly: false,
-                    secure: MyConfig.devMode, // false for localhost
+                    secure: !MyConfig.devMode, // false for localhost
                     sameSite: 'none',
                     maxAge: 0, // 1 day
                 });

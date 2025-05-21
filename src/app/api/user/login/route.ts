@@ -81,7 +81,7 @@ export async function POST(
                     // Set cookie
                     cookies()).set('auth-token', `Bearer ${token}`, {
                         httpOnly: true,
-                        secure: MyConfig.devMode, // false for localhost
+                        secure: !MyConfig.devMode, // false for localhost
                         sameSite: 'none',
                         maxAge: 60 * 60 * 24, // 1 day
                     });
@@ -89,7 +89,7 @@ export async function POST(
                     // Set cookie
                     cookies()).set('user-session', 'true', {
                         httpOnly: false,
-                        secure: MyConfig.devMode, // false for localhost
+                        secure: !MyConfig.devMode, // false for localhost
                         sameSite: 'none',
                         maxAge: 60 * 60 * 24, // 1 day
                     });
