@@ -1,21 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import { NextRequest } from "next/server";
-
-interface Params {
-    id: string;
-}
-
-interface Props {
-    params: Params;
-}
-
 export async function GET(
-    req: NextRequest,
-    { params }: Props
+    req: Request,
+    { params }: { params: Promise<{ id: string }> }
 ) {
-    console.log(req.method);
     const { id } = await params;
+    console.log(req.method);
 
     try {
         return new Response(
