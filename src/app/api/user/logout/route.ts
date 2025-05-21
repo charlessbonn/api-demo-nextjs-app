@@ -44,14 +44,6 @@ export async function POST(
                 sameSite: 'none',
                 maxAge: 0, // 1 day
             });
-        (await
-            // Set cookie
-            cookies()).set('user-session', '', {
-                httpOnly: false,
-                secure: !MyConfig.devMode, // false for localhost
-                sameSite: 'none',
-                maxAge: 0, // 1 day
-            });
 
         return new Response(null, { status: 204 });
     } catch (error) {
@@ -61,14 +53,6 @@ export async function POST(
                 // Set cookie
                 cookies()).set('auth-token', '', {
                     httpOnly: true,
-                    secure: !MyConfig.devMode, // false for localhost
-                    sameSite: 'none',
-                    maxAge: 0, // 1 day
-                });
-            (await
-                // Set cookie
-                cookies()).set('user-session', '', {
-                    httpOnly: false,
                     secure: !MyConfig.devMode, // false for localhost
                     sameSite: 'none',
                     maxAge: 0, // 1 day

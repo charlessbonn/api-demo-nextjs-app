@@ -66,14 +66,6 @@ export async function GET(
                     sameSite: 'none',
                     maxAge: 0, // 1 day
                 });
-            (await
-                // Set cookie
-                cookies()).set('user-session', '', {
-                    httpOnly: false,
-                    secure: !MyConfig.devMode, // false for localhost
-                    sameSite: 'none',
-                    maxAge: 0, // 1 day
-                });
             return new Response(JSON.stringify({ error: `Something went wrong. ERR: ${error}` }), {
                 status: 401,
                 headers: { 'Content-Type': 'application/json' },
@@ -169,14 +161,6 @@ export async function POST(
                 // Set cookie
                 cookies()).set('auth-token', '', {
                     httpOnly: true,
-                    secure: !MyConfig.devMode, // false for localhost
-                    sameSite: 'none',
-                    maxAge: 0, // 1 day
-                });
-            (await
-                // Set cookie
-                cookies()).set('user-session', '', {
-                    httpOnly: false,
                     secure: !MyConfig.devMode, // false for localhost
                     sameSite: 'none',
                     maxAge: 0, // 1 day

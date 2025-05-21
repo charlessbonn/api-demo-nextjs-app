@@ -85,14 +85,6 @@ export async function POST(
                         sameSite: 'none',
                         maxAge: 60 * 60 * 24, // 1 day
                     });
-                (await
-                    // Set cookie
-                    cookies()).set('user-session', 'true', {
-                        httpOnly: false,
-                        secure: !MyConfig.devMode, // false for localhost
-                        sameSite: 'none',
-                        maxAge: 60 * 60 * 24, // 1 day
-                    });
 
                 return new Response(null, { status: 204 });
             } else {

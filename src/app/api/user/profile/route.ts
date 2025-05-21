@@ -64,14 +64,6 @@ export async function GET(
                     sameSite: 'none',
                     maxAge: 0, // 1 day
                 });
-            (await
-                // Set cookie
-                cookies()).set('user-session', '', {
-                    httpOnly: false,
-                    secure: !MyConfig.devMode, // false for localhost
-                    sameSite: 'none',
-                    maxAge: 0, // 1 day
-                });
             return new Response(JSON.stringify({ error: `Something went wrong. ERR: ${error}` }), {
                 status: 400,
                 headers: { 'Content-Type': 'application/json' },
