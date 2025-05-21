@@ -85,6 +85,14 @@ export async function POST(
                         sameSite: 'none',
                         maxAge: 60 * 60 * 24, // 1 day
                     });
+                (await
+                    // Set cookie
+                    cookies()).set('user-session', 'true', {
+                        httpOnly: false,
+                        secure: MyConfig.devMode, // false for localhost
+                        sameSite: 'none',
+                        maxAge: 60 * 60 * 24, // 1 day
+                    });
 
                 return new Response(null, { status: 204 });
             } else {
@@ -108,7 +116,7 @@ export async function POST(
     } catch (error) {
         return new Response(JSON.stringify({ error: `Something went wrong. ERR: ${error}` }), {
             status: 400,
-            headers: { 
+            headers: {
                 'Content-Type': 'application/json',
                 ...corsHeaders(req),
             },
