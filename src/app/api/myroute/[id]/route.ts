@@ -1,5 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
+import { NextRequest } from "next/server";
+
 interface Params {
     id: string;
 }
@@ -9,7 +11,7 @@ interface Props {
 }
 
 export async function GET(
-    req: Request,
+    req: NextRequest,
     { params }: Props
 ) {
     console.log(req.method);
