@@ -11,7 +11,7 @@ interface Props {
 export async function GET(
     req: Request,
     { params }: Props
-): Promise<Response> {
+) {
     console.log(req.method);
     const { id } = await params;
 
