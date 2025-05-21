@@ -20,7 +20,7 @@ export async function GET(
 
         if (!token) {
             return new Response(JSON.stringify({ error: 'Unauthorized' }), {
-                status: 401,
+                status: 400,
                 headers: {
                     'Content-Type': 'application/json',
                     ...corsHeaders(req),
@@ -32,7 +32,7 @@ export async function GET(
 
         if (tokenData?.user?.userRole !== "superadmin" || !tokenData?.user?.isActive) {
             return new Response(JSON.stringify({ error: 'Unauthorized' }), {
-                status: 401,
+                status: 400,
                 headers: {
                     'Content-Type': 'application/json',
                     ...corsHeaders(req),
@@ -73,7 +73,7 @@ export async function GET(
                     maxAge: 0, // 1 day
                 });
             return new Response(JSON.stringify({ error: `Something went wrong. ERR: ${error}` }), {
-                status: 401,
+                status: 400,
                 headers: { 'Content-Type': 'application/json' },
             });
         }
