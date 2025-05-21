@@ -20,7 +20,7 @@ export async function GET(
 
         if (!token) {
             return new Response(JSON.stringify({ error: 'Unauthorized' }), {
-                status: 400,
+                status: 401,
                 headers: {
                     'Content-Type': 'application/json',
                     ...corsHeaders(req),
@@ -32,7 +32,7 @@ export async function GET(
 
         if (tokenData?.user?.userRole !== "superadmin" || !tokenData?.user?.isActive) {
             return new Response(JSON.stringify({ error: 'Unauthorized' }), {
-                status: 400,
+                status: 401,
                 headers: {
                     'Content-Type': 'application/json',
                     ...corsHeaders(req),
@@ -55,17 +55,8 @@ export async function GET(
         });
     } catch (error) {
         if (error?.toString().includes('TokenExpiredError')) {
-            // Set cookie
-            (await
-                // Set cookie
-                cookies()).set('auth-token', '', {
-                    httpOnly: true,
-                    secure: !MyConfig.devMode, // false for localhost
-                    sameSite: 'none',
-                    maxAge: 0, // 1 day
-                });
             return new Response(JSON.stringify({ error: `Something went wrong. ERR: ${error}` }), {
-                status: 400,
+                status: 401,
                 headers: { 'Content-Type': 'application/json' },
             });
         }

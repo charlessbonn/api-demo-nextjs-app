@@ -82,7 +82,7 @@ export async function POST(
                     cookies()).set('auth-token', `Bearer ${token}`, {
                         httpOnly: true,
                         secure: !MyConfig.devMode, // false for localhost
-                        sameSite: 'none',
+                        sameSite: !MyConfig.devMode ? 'none' : 'lax',
                         maxAge: 60 * 60 * 24, // 1 day
                     });
 
